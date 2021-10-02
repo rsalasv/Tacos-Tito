@@ -1,0 +1,2 @@
+export 'background_image.dart';
+//ADD ALL RECYCLABLE WIDGETS HERE FOR EASIER EXPORTING
