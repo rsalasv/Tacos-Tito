@@ -13,7 +13,7 @@ class _CreateOrderState extends State<CreateOrder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tacos Tito"),
+        title: Text("Tacos Tito", style: TextStyle(color: Colors.white,)),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -64,7 +64,7 @@ class _CreateOrderState extends State<CreateOrder> {
             children: [
               ElevatedButton(
                 onPressed: (){},
-                child: Icon(Icons.add),
+                child: Icon(Icons.add, color: Colors.white,),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(7),
@@ -77,7 +77,7 @@ class _CreateOrderState extends State<CreateOrder> {
               ),
               ElevatedButton(
                 onPressed: (){},
-                child: Icon(Icons.remove),
+                child: Icon(Icons.remove, color: Colors.white,),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(7),
@@ -99,7 +99,7 @@ class _CreateOrderState extends State<CreateOrder> {
               SizedBox(width: 25,),
               ElevatedButton(
                 onPressed: (){}, 
-                child: Icon(Icons.reorder),
+                child: Icon(Icons.reorder, color: Colors.white,),
                 //style: ElevatedButton.styleFrom(
                 //  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5) 
                 //),
@@ -111,7 +111,7 @@ class _CreateOrderState extends State<CreateOrder> {
             children: [
               ElevatedButton(
                 onPressed: (){},
-                child: Icon(Icons.add),
+                child: Icon(Icons.add, color: Colors.white,),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(7),
@@ -124,7 +124,7 @@ class _CreateOrderState extends State<CreateOrder> {
               ),
               ElevatedButton(
                 onPressed: (){},
-                child: Icon(Icons.remove),
+                child: Icon(Icons.remove, color: Colors.white,),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(7),
@@ -146,7 +146,7 @@ class _CreateOrderState extends State<CreateOrder> {
               SizedBox(width: 25,),
               ElevatedButton(
                 onPressed: (){}, 
-                child: Icon(Icons.reorder),
+                child: Icon(Icons.reorder, color: Colors.white,),
                 //style: ElevatedButton.styleFrom(
                 //  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5) 
                 //),
@@ -160,7 +160,7 @@ class _CreateOrderState extends State<CreateOrder> {
               ElevatedButton(
                 onPressed: (){},
                 child: Text("Añadir plato",
-                  style: TextStyle(fontSize: 20)
+                  style: TextStyle(fontSize: 20, color: Colors.white,)
                 ),
                 style: ElevatedButton.styleFrom(
                   padding: EdgeInsets.symmetric(horizontal: 60),
@@ -244,7 +244,7 @@ class _CreateOrderState extends State<CreateOrder> {
               ElevatedButton(
                 onPressed: (){},
                 child: Text("Enviar orden",
-                  style: TextStyle(fontSize: 20)
+                  style: TextStyle(fontSize: 20, color: Colors.white,)
                 ),
               ),
               SizedBox(width: 15,)

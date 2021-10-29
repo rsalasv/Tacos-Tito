@@ -17,8 +17,9 @@ class _LoginState extends State<Login> {
         Scaffold(
           backgroundColor: Colors.transparent,
           body: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-            SizedBox(height: 80,),
+            SizedBox(height: 30,),
             Text("Taqueria Tito", style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),),
+            SizedBox(height: 100,),
             TextField(
               style: TextStyle(color: Colors.white),
               decoration: InputDecoration(
@@ -39,10 +40,11 @@ class _LoginState extends State<Login> {
                   prefixIcon: Icon(Icons.password),
                 ),
             ),
-            SizedBox(height: 20,),
+            SizedBox(height: 70,),
             Row(
               mainAxisAlignment:MainAxisAlignment.center,
               children: [
+                
                 ElevatedButton(onPressed: ()=>{}, child: Text("Inicia sesión", style: TextStyle(fontSize: 20, color: Colors.white),)),
                 SizedBox(width: 50,),
                 ElevatedButton(onPressed: ()=>{}, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
