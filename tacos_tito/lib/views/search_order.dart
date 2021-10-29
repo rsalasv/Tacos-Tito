@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/widgets/all_widgets.dart';
 
 class SearchOrder extends StatefulWidget {
   SearchOrder({Key? key}) : super(key: key);
@@ -16,26 +17,18 @@ class _SearchOrderState extends State<SearchOrder> {
         ),
         body: Center(
           child: ListView(
+            padding: EdgeInsets.all(10),
             children: [
-              ListTile(
-                leading: Icon(Icons.search),
-                title: Padding(
-                  padding: EdgeInsets.only(right: 24),
-                  child: Container(
-                    child: TextField(
-                      decoration: InputDecoration(
-                        hintText: 'type in journal name...',
-                        hintStyle: TextStyle(
-                        color: Colors.white,
-                        fontSize: 18,
-                        fontStyle: FontStyle.italic,
-                        )
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              Text('Hello World')
+              Column(children: [
+                TextField(
+                  style: TextStyle(color: Colors.black),
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(Icons.search, size:  30,),
+                    border: OutlineInputBorder()
+                  ),),
+                  OrderView(),
+                  OrderView()
+              ],)
             ],
           ),
         ),

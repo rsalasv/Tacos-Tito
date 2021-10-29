@@ -16,40 +16,41 @@ class _LoginState extends State<Login> {
         BackgroundImage(),
         Scaffold(
           backgroundColor: Colors.transparent,
-          body: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
-            SizedBox(height: 30,),
-            Text("Taqueria Tito", style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),),
-            SizedBox(height: 100,),
-            TextField(
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                  labelText: "Usuario",
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.person),
-                ),
-            ),
-            SizedBox(height: 40,),
-            TextField(
-              obscureText: true,
-              style: TextStyle(color: Colors.white),
-              decoration: InputDecoration(
-                  enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                  labelText: "Contraseña",
-                  border: OutlineInputBorder(),
-                  prefixIcon: Icon(Icons.password),
-                ),
-            ),
-            SizedBox(height: 70,),
-            Row(
-              mainAxisAlignment:MainAxisAlignment.center,
-              children: [
-                
-                ElevatedButton(onPressed: ()=>{}, child: Text("Inicia sesión", style: TextStyle(fontSize: 20, color: Colors.white),)),
-                SizedBox(width: 50,),
-                ElevatedButton(onPressed: ()=>{}, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
-              ],)
-          ],),
+          body: Container(
+            margin: EdgeInsets.all(10),
+            child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
+              SizedBox(height: 80,),
+              Text("Taqueria Tito", style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),),
+              TextField(
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                    labelText: "Usuario",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.person),
+                  ),
+              ),
+              SizedBox(height: 40,),
+              TextField(
+                obscureText: true,
+                style: TextStyle(color: Colors.white),
+                decoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
+                    labelText: "Contraseña",
+                    border: OutlineInputBorder(),
+                    prefixIcon: Icon(Icons.password),
+                  ),
+              ),
+              SizedBox(height: 20,),
+              Row(
+                mainAxisAlignment:MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(onPressed: ()=>{}, child: Text("Inicia sesión", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                  SizedBox(width: 50,),
+                  ElevatedButton(onPressed: ()=>{}, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                ],)
+            ],),
+          ),
         )
       ],
     );
