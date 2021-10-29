@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/views/all_views.dart';
 
 class HomePage extends StatefulWidget {
   HomePage({Key? key}) : super(key: key);
@@ -19,7 +20,12 @@ class _HomePageState extends State<HomePage> {
               Icons.receipt,
               color: Colors.white,
             ),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PendingOrder()),
+              );
+            },
           ),
           IconButton(
             icon: Icon(
@@ -61,7 +67,13 @@ class _HomePageState extends State<HomePage> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => CreateOrder()),
+                    );
+                  //TODO hide in case of admin user
+                },
                 child: Text("Ordenar ahora",
                   style: TextStyle(fontSize: 20, color: Colors.white),
                   
@@ -76,9 +88,16 @@ class _HomePageState extends State<HomePage> {
         
       ),
       floatingActionButton: new FloatingActionButton(
-            onPressed: (){},
-            child: Icon(Icons.shopping_cart_outlined, color: Colors.white,),
-            tooltip: "Carrito de compras",
+            onPressed: (){
+              Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => SearchOrder()),
+                    );
+
+              //TODO remove in case of normal user
+            },
+            child: Icon(Icons.search, color: Colors.white,),
+            tooltip: "Buscar orden",
             
           )
     );

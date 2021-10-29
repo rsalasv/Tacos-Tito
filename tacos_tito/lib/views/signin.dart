@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/views/all_views.dart';
 import '../widgets/all_widgets.dart';
 
 class Signin extends StatefulWidget {
@@ -89,9 +90,19 @@ class _SigninState extends State<Signin> {
               Row(
                 mainAxisAlignment:MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed: ()=>{}, child: Text("Ya tengo cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
-                  SizedBox(width: 35,),
-                  ElevatedButton(onPressed: ()=>{}, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                  ElevatedButton(onPressed: ()=>{
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    )
+                  }, child: Text("Ya tengo cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                  SizedBox(width: 15,),
+                  ElevatedButton(onPressed: ()=>{
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Login()),
+                    )
+                  }, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
                 ],)
             ],),
           ),

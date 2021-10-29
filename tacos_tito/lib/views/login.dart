@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/views/all_views.dart';
 import '../widgets/all_widgets.dart';
 
 class Login extends StatefulWidget {
@@ -45,9 +46,19 @@ class _LoginState extends State<Login> {
               Row(
                 mainAxisAlignment:MainAxisAlignment.center,
                 children: [
-                  ElevatedButton(onPressed: ()=>{}, child: Text("Inicia sesión", style: TextStyle(fontSize: 20, color: Colors.white),)),
-                  SizedBox(width: 50,),
-                  ElevatedButton(onPressed: ()=>{}, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                  ElevatedButton(onPressed: ()=>{
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => HomePage()),
+                    )
+                  }, child: Text("Inicia sesión", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                  SizedBox(width: 35,),
+                  ElevatedButton(onPressed: ()=>{
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Signin()),
+                    )
+                  }, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
                 ],)
             ],),
           ),
