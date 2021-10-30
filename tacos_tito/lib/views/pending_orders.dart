@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/views/all_views.dart';
 import '../widgets/all_widgets.dart';
 
 class PendingOrder extends StatefulWidget {
@@ -13,7 +14,7 @@ class _PendingOrderState extends State<PendingOrder> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Tacos Tito"),
+        title: Text("Tacos Tito", style: TextStyle(color: Colors.white,)),
         leading: Icon(Icons.keyboard_backspace),
         actions: <Widget>[
           IconButton(
@@ -62,8 +63,13 @@ class _PendingOrderState extends State<PendingOrder> {
         ]
       ),
       floatingActionButton: new FloatingActionButton(
-            onPressed: (){},
-            child: Icon(Icons.chat),
+            onPressed: (){
+              Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => Chat()),
+                    );
+            },
+            child: Icon(Icons.chat, color: Colors.white),
             tooltip: "Chat",
             
           )
