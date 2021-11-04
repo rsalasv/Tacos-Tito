@@ -35,28 +35,31 @@ class _ChatState extends State<Chat> {
       ),
       body: Stack(
         children: <Widget>[
-          ListView.builder(
-            
-            itemCount: _messages.length,
-            shrinkWrap: true,
-            padding: EdgeInsets.only(top: 10,bottom: 10),
-            //physics: NeverScrollableScrollPhysics(),
-            itemBuilder: (context, index){
-              return Container(
-                padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
-                child: Align(
-                  alignment: (_messages[index].messageType == "receiver"?Alignment.topLeft:Alignment.topRight),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
-                      color: (_messages[index].messageType  == "receiver"?Colors.grey.shade200:Colors.orange[300]),
+          Padding(
+            padding: const EdgeInsets.only(bottom: 50),
+            child: ListView.builder(
+              
+              itemCount: _messages.length,
+              shrinkWrap: true,
+              padding: EdgeInsets.only(top: 10,bottom: 10),
+              //physics: NeverScrollableScrollPhysics(),
+              itemBuilder: (context, index){
+                return Container(
+                  padding: EdgeInsets.only(left: 14,right: 14,top: 10,bottom: 10),
+                  child: Align(
+                    alignment: (_messages[index].messageType == "receiver"?Alignment.topLeft:Alignment.topRight),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        color: (_messages[index].messageType  == "receiver"?Colors.grey.shade200:Colors.orange[300]),
+                      ),
+                      padding: EdgeInsets.all(16),
+                      child: Text(_messages[index].messageContent!, style: TextStyle(fontSize: 15),),
                     ),
-                    padding: EdgeInsets.all(16),
-                    child: Text(_messages[index].messageContent!, style: TextStyle(fontSize: 15),),
                   ),
-                ),
-              );
-            },
+                );
+              },
+            ),
           ),
           SizedBox(height: 20),
           Align(
