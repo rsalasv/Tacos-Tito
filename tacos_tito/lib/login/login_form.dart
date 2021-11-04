@@ -1,15 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/views/all_views.dart';
+import 'package:auth_buttons/auth_buttons.dart';
 import '../widgets/all_widgets.dart';
+import 'dart:ui';
 
-class Login extends StatefulWidget {
-  Login({Key? key}) : super(key: key);
+class LoginForm extends StatelessWidget {
+    // cambiar a un solo value changed que reciba enum de login
+  final ValueChanged<bool> onGoogleLoginTap;
+  final ValueChanged<bool> onFacebookLoginTap;
 
-  @override
-  _LoginState createState() => _LoginState();
-}
+  LoginForm({
+    Key? key,
+    required this.onGoogleLoginTap,
+    required this.onFacebookLoginTap,
+  }) : super(key: key);
 
-class _LoginState extends State<Login> {
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -22,6 +28,40 @@ class _LoginState extends State<Login> {
             child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
               SizedBox(height: 80,),
               Text("Taqueria Tito", style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),),
+
+              Container(
+                margin: EdgeInsets.symmetric(horizontal: 32),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: FacebookAuthButton(
+                        onPressed: () => onFacebookLoginTap(true),
+                        text: "Iniciar con Facebook",
+                        style: AuthButtonStyle(borderRadius: 18),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              SizedBox(height: 14),
+              
+              Container(
+                  margin: EdgeInsets.symmetric(horizontal: 32),
+                child: Row(
+                  children: [
+                    Expanded(
+                      child: GoogleAuthButton(
+                        onPressed: () => onGoogleLoginTap(true),
+                        text: "Iniciar con Google",
+                        style: AuthButtonStyle(borderRadius: 18),
+                        darkMode: false,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
               TextField(
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
