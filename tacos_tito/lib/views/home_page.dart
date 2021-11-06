@@ -72,7 +72,7 @@ class _HomePageState extends State<HomePage> {
                       context,
                       MaterialPageRoute(builder: (context) => CreateOrder()),
                     );
-                  //TODO hide in case of admin user
+                  //TODO hide in case of admin user Widget Visibility (visible: isUserAdmin) 
                 },
                 child: Text("Ordenar ahora",
                   style: TextStyle(fontSize: 20, color: Colors.white),

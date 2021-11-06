@@ -10,6 +10,8 @@ class PendingOrder extends StatefulWidget {
 }
 
 class _PendingOrderState extends State<PendingOrder> {
+  List<OrderView> orders =[new OrderView()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -56,7 +58,7 @@ class _PendingOrderState extends State<PendingOrder> {
             ),
             child: Column(
               children: [
-                OrderView()
+                ListView.builder(itemBuilder: (_,index)=>orders[index],itemCount: orders.length,shrinkWrap: true, physics: ScrollPhysics(),)
               ],
             ),
           ),

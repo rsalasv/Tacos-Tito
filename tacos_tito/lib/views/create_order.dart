@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/widgets/all_widgets.dart';
 
 class CreateOrder extends StatefulWidget {
   CreateOrder({Key? key}) : super(key: key);
@@ -9,6 +10,9 @@ class CreateOrder extends StatefulWidget {
 }
 
 class _CreateOrderState extends State<CreateOrder> {
+  List<PlateView> platos=[new PlateView()];
+  int total = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,116 +53,15 @@ class _CreateOrderState extends State<CreateOrder> {
             
           ),
           SizedBox(height: 15,),
-          Row(
-            children: [
-              SizedBox(width: 15,),
-              Text("Plato 1",
-                style: TextStyle(
-                  fontSize: 17,
-                ),
-              ),
-            ],
-          ),
-          SizedBox(height: 10,),
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: (){},
-                child: Icon(Icons.add, color: Colors.white,),
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(7),
-                ),
-              ),
-              Text("5",
-                style: TextStyle(
-                  fontSize: 17
-                ),
-              ),
-              ElevatedButton(
-                onPressed: (){},
-                child: Icon(Icons.remove, color: Colors.white,),
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(7),
-                ),
-              ),
-              SizedBox(width: 10,),
-              Container(
-                height: 37.0,
-                width: 140.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.all(Radius.circular(5)),),
-                child: Center(
-                  child:new Text("Adobada", 
-                  style: TextStyle(fontSize: 17,),
-                ),
-                )
-              ),
-              SizedBox(width: 25,),
-              ElevatedButton(
-                onPressed: (){}, 
-                child: Icon(Icons.reorder, color: Colors.white,),
-                //style: ElevatedButton.styleFrom(
-                //  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5) 
-                //),
-              )
-            ]
-          ),
-          SizedBox(height: 10,),
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: (){},
-                child: Icon(Icons.add, color: Colors.white,),
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(7),
-                ),
-              ),
-              Text("3",
-                style: TextStyle(
-                  fontSize: 17
-                ),
-              ),
-              ElevatedButton(
-                onPressed: (){},
-                child: Icon(Icons.remove, color: Colors.white,),
-                style: ElevatedButton.styleFrom(
-                  shape: CircleBorder(),
-                  padding: EdgeInsets.all(7),
-                ),
-              ),
-              SizedBox(width: 10,),
-              Container(
-                height: 37.0,
-                width: 140.0,
-                decoration: BoxDecoration(
-                  color: Colors.grey[300],
-                  borderRadius: BorderRadius.all(Radius.circular(7)),),
-                child: Center(
-                  child:new Text("Asada", 
-                  style: TextStyle(fontSize: 17,),
-                ),
-                )
-              ),
-              SizedBox(width: 25,),
-              ElevatedButton(
-                onPressed: (){}, 
-                child: Icon(Icons.reorder, color: Colors.white,),
-                //style: ElevatedButton.styleFrom(
-                //  padding: EdgeInsets.symmetric(horizontal: 5, vertical: 5) 
-                //),
-              )
-            ]
-          ),
-          SizedBox(height: 40,),
+          ListView.builder(itemBuilder: (_,index)=>platos[index],itemCount: platos.length,shrinkWrap: true, physics: ScrollPhysics(),),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               ElevatedButton(
-                onPressed: (){},
+                onPressed: (){
+                  platos.add(new PlateView());
+                  setState(() {});
+                },
                 child: Text("Añadir plato",
                   style: TextStyle(fontSize: 20, color: Colors.white,)
                 ),
@@ -172,7 +75,7 @@ class _CreateOrderState extends State<CreateOrder> {
           Row(
             children: [
               SizedBox(width: 15,),
-              Text("Total: \$150",
+              Text("Total: \$$total",
                 style: TextStyle(
                   fontSize: 17,
                 ),
@@ -237,7 +140,7 @@ class _CreateOrderState extends State<CreateOrder> {
               ),
             ],
           ),
-          SizedBox(height: 30,),
+          SizedBox(height: 15,),
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [

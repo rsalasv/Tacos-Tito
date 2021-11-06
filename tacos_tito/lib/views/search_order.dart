@@ -9,6 +9,8 @@ class SearchOrder extends StatefulWidget {
 }
 
 class _SearchOrderState extends State<SearchOrder> {
+  List<OrderView> orders =[new OrderView()];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,8 +28,7 @@ class _SearchOrderState extends State<SearchOrder> {
                     prefixIcon: Icon(Icons.search, size:  30,),
                     border: OutlineInputBorder()
                   ),),
-                  OrderView(),
-                  OrderView()
+                  ListView.builder(itemBuilder: (_,index)=>orders[index],itemCount: orders.length,shrinkWrap: true, physics: ScrollPhysics(),)
               ],)
             ],
           ),

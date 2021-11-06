@@ -25,7 +25,7 @@ class LoginForm extends StatelessWidget {
           backgroundColor: Colors.transparent,
           body: Container(
             margin: EdgeInsets.all(10),
-            child: Column(mainAxisAlignment: MainAxisAlignment.center,children: [
+            child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
               SizedBox(height: 80,),
               Text("Taqueria Tito", style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),),
 
@@ -43,9 +43,7 @@ class LoginForm extends StatelessWidget {
                   ],
                 ),
               ),
-
-              SizedBox(height: 14),
-              
+  
               Container(
                   margin: EdgeInsets.symmetric(horizontal: 32),
                 child: Row(
@@ -71,7 +69,7 @@ class LoginForm extends StatelessWidget {
                     prefixIcon: Icon(Icons.person),
                   ),
               ),
-              SizedBox(height: 40,),
+
               TextField(
                 obscureText: true,
                 style: TextStyle(color: Colors.white),
@@ -82,7 +80,7 @@ class LoginForm extends StatelessWidget {
                     prefixIcon: Icon(Icons.password),
                   ),
               ),
-              SizedBox(height: 20,),
+              
               Row(
                 mainAxisAlignment:MainAxisAlignment.center,
                 children: [
