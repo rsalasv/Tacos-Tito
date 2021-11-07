@@ -208,6 +208,16 @@ class _CreateOrderState extends State<CreateOrder> {
                     ElevatedButton(
                       onPressed: () {
                         DateTime date = new DateTime.now();
+                        var plates = [];
+                        for(int i = 0; i < platos.length; i++){
+                          var plato = {};
+                          //plates["Plato $i"] = platos[i].guisos.length;
+                          for(int j = 0; j < platos[i].guisos.length; j++){
+                            //plates[platos[i].guisos[j].selectedGuiso] = platos[i].guisos[j].amount;
+                            plato[platos[i].guisos[j].selectedGuiso] = platos[i].guisos[j].amount;
+                          }
+                          plates.add(plato);
+                        }
                         if (_formKey.currentState!.validate()) {
                           _createBloc.add(SaveOrderOnlineEvent(
                             orderData: {
@@ -215,9 +225,10 @@ class _CreateOrderState extends State<CreateOrder> {
                               "direction": direction,
                               "phone": phone,
                               "pay_amount": pay_amount,
-                              "plates": [],
+                              "plates": plates,
                             }
-                          ));
+                          )
+                          );
                           ScaffoldMessenger.of(context).showSnackBar(
                             const SnackBar(content: Text('Enviando tu orden')),
                           );

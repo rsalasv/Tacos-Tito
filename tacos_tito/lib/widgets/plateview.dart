@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'tacoview.dart';
 
 class PlateView extends StatefulWidget {
+  List<TacoView> guisos=[new TacoView()];
   PlateView({Key? key}) : super(key: key);
   
   @override
@@ -9,10 +10,10 @@ class PlateView extends StatefulWidget {
 }
 
 class _PlateViewState extends State<PlateView> {
-  List<TacoView> guisos=[new TacoView()];
+  
 
   addGuiso(){
-    guisos.add(new TacoView());
+    widget.guisos.add(new TacoView());
     setState(() {});
   }
 
@@ -30,7 +31,7 @@ class _PlateViewState extends State<PlateView> {
             ],
           ),
           SizedBox(height: 10,),
-          ListView.builder(itemBuilder: (_,index)=>guisos[index],itemCount: guisos.length,shrinkWrap: true),
+          ListView.builder(itemBuilder: (_,index)=>widget.guisos[index],itemCount: widget.guisos.length,shrinkWrap: true),
           Row(children: [
             //ListView.builder(itemBuilder: (_,index)=>guisos[index],itemCount: guisos.length,shrinkWrap: true),
             //TacoView(),

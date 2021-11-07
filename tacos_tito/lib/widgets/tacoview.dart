@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TacoView extends StatefulWidget {
+  int amount = 0;
+  final guisos =["Asada", "Adobada", "Chorizo", "Tripa"];
+  String? selectedGuiso;
   TacoView({Key? key}) : super(key: key);
 
   @override
@@ -9,9 +12,6 @@ class TacoView extends StatefulWidget {
 
 class _TacoViewState extends State<TacoView> {
   @override
-  int amount = 0;
-  final guisos =["Asada", "Adobada", "Chorizo", "Tripa"];
-  String? selectedGuiso;
   bool editable=true; //TODO: Permitir cambiar su editabilidad dependiendo de la vista
 
   Widget build(BuildContext context) {
@@ -20,17 +20,16 @@ class _TacoViewState extends State<TacoView> {
               if(this.editable) ElevatedButton(
                 onPressed: (){
                   setState(() {
-                    if(amount<6)
-                    amount++;
+                    if(widget.amount > 0) widget.amount--;
                   });
                 },
-                child: Icon(Icons.add, color: Colors.white,),
+                child: Icon(Icons.remove, color: Colors.white,),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(7),
                 ),
               ),
-              Text('$amount',
+              Text('${widget.amount}',
                 style: TextStyle(
                   fontSize: 17
                 ),
@@ -38,11 +37,10 @@ class _TacoViewState extends State<TacoView> {
               if(this.editable) ElevatedButton(
                 onPressed: (){
                   setState(() {
-                    if(amount>0)
-                    amount--;
+                    if(widget.amount < 6) widget.amount++;
                   });
                 },
-                child: Icon(Icons.remove, color: Colors.white,),
+                child: Icon(Icons.add, color: Colors.white,),
                 style: ElevatedButton.styleFrom(
                   shape: CircleBorder(),
                   padding: EdgeInsets.all(7),
@@ -57,9 +55,9 @@ class _TacoViewState extends State<TacoView> {
                   borderRadius: BorderRadius.all(Radius.circular(5)),),
                 child: Center(
                   child: DropdownButton<String>(
-                    value: selectedGuiso,
-                    items: guisos.map(builMenuItem).toList(),
-                    onChanged: (value)=>setState(()=>this.selectedGuiso = value!),
+                    value: widget.selectedGuiso,
+                    items: widget.guisos.map(builMenuItem).toList(),
+                    onChanged: (value)=>setState(()=>this.widget.selectedGuiso = value!),
                   )
                 )
               ),
@@ -70,7 +68,7 @@ class _TacoViewState extends State<TacoView> {
                   color: Colors.grey[300],
                   borderRadius: BorderRadius.all(Radius.circular(5)),),
                 child: Center(
-                  child: Text(selectedGuiso!)
+                  child: Text(widget.selectedGuiso!)
                 )
               ),
             ]
