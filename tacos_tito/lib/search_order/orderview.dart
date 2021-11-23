@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'all_widgets.dart';
-import 'tacoview.dart';
+import '../widgets/all_widgets.dart';
+import '../widgets/tacoview.dart';
 
 class OrderView extends StatefulWidget {
   OrderView({Key? key}) : super(key: key);
@@ -18,7 +18,7 @@ class _OrderViewState extends State<OrderView> {
   String direccion="Cortijo de San Agustín, Camino del labrador #13";
   String cliente="John Cena";
   num total=104.00;
-  
+  //return Text("${DateFormat('dd/MM/yyyy - kk:mm').format(state.orderList[index]["date"].toDate())}\n${state.orderList[index]["direction"]}");
   @override
   Widget build(BuildContext context) {
     return Column(children: [
