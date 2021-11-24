@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/login/login.dart';
 import '../widgets/all_widgets.dart';
+import 'package:bloc/bloc.dart';
+import '../auth/user_auth_repository.dart';
 
 class Signin extends StatefulWidget {
   Signin({Key? key}) : super(key: key);
@@ -10,6 +12,12 @@ class Signin extends StatefulWidget {
 }
 
 class _SigninState extends State<Signin> {
+  UserAuthRepository userRep = UserAuthRepository();
+  
+
+  final userController = TextEditingController();
+  final passController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -45,14 +53,15 @@ class _SigninState extends State<Signin> {
               ),
               SizedBox(height: 10,),
               TextField(
-                keyboardType: TextInputType.number,
+                keyboardType: TextInputType.text,
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                    labelText: "Telefono",
+                    labelText: "Correo",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.phone),
                   ),
+                controller: userController,
               ),
               SizedBox(height: 10,),
               TextField(
@@ -74,6 +83,7 @@ class _SigninState extends State<Signin> {
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.password),
                   ),
+                controller: passController,
               ),
               SizedBox(height: 10,),
               TextField(
@@ -98,11 +108,13 @@ class _SigninState extends State<Signin> {
                   }, child: Text("Ya tengo cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
                   SizedBox(width: 15,),
                   ElevatedButton(onPressed: ()=>{
+                    userRep.signUpWithMail(email: userController.text, password: passController.text),
                     Navigator.push(
                       context,
                       MaterialPageRoute(builder: (context) => Login()),
                     )
                   }, child: Text("Crea una cuenta", style: TextStyle(fontSize: 20, color: Colors.white),)),
+                  
                 ],)
             ],),
           ),

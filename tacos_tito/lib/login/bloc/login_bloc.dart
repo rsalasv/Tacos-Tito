@@ -7,18 +7,20 @@ part 'login_event.dart';
 part 'login_state.dart';
 
 class LoginBloc extends Bloc<LoginEvent, LoginState> {
-  UserAuthRepository _userRep = UserAuthRepository();
+  UserAuthRepository userRep = UserAuthRepository();
 
   LoginBloc() : super(LoginInitial()) {
     on<LoginWithGoogleEvent>(_googleLogin);
   }
+
+  
 
   Future _googleLogin(
     LoginEvent event,
     Emitter emitState,
   ) async {
     try {
-      await _userRep.signInWithGoogle();
+      await userRep.signInWithGoogle();
       emitState(LoginSuccessState());
     } catch (e) {
       emitState(

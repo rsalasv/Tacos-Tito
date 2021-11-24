@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 class UserAuthRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  //get user => _auth.currentUser;
 
   bool isAlreadyLogged() {
     var user = _auth.currentUser;
@@ -29,7 +30,34 @@ class UserAuthRepository {
   //  await anonymousUser.reload();
   //}
 
+  //Usuario y contraseña
+  Future signUpWithMail({String? email, String? password}) async {
+    try {
+      await _auth.createUserWithEmailAndPassword(
+        email: email!,
+        password: password!,
+      );
+      return null;
+    } on FirebaseAuthException catch (e) {
+      print("Can't login");
+      return e.message;
+    }
+  }
 
+  Future signInWithMail({String ?email, String ?password}) async {
+    try {
+      await _auth.signInWithEmailAndPassword(email: email!, password: password!);
+      return null;
+    } on FirebaseAuthException catch (e) {
+      return e.message;
+    }
+  }
+
+  Future signOutWithMail() async {
+    await _auth.signOut();
+
+    print('signout');
+  }
 
   Future<void> signInWithGoogle() async {
     // Google sign in

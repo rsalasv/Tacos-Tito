@@ -13,8 +13,8 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-    late LoginBloc _loginBloc;
-
+  late LoginBloc _loginBloc;
+  
   // para poder agregar eventos al bloc
   // al presionar los botones de login
 

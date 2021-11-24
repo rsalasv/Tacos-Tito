@@ -15,14 +15,25 @@ class SearchOrder extends StatefulWidget {
 class _SearchOrderState extends State<SearchOrder> {
   List<OrderView> orders = [new OrderView()];
 
-  Text getPlates(map){
+  Text getPlates(map, nombre){
+
     var plates = "";
-    for(var i = 0; i < map.length; i++){
-      plates += "Plato $i\n\n";
-      for(var j = 0; j < map[i].length; j++)
-        plates += map[i].keys.elementAt(j).toString() + " " + map[i].values.elementAt(j).toString() + "\n";
-      plates += "\n";
-    }
+    /*if(nombre != ""){
+      for(var i = 0; i < map.length; i++){
+        plates += "Plato $i\n\n";
+        for(var j = 0; j < map[i].length; j++)
+          plates += map[i].keys.elementAt(j).toString() + " " + map[i].values.elementAt(j).toString() + "\n";
+        plates += "\n";
+      }*/
+    //}else{
+      for(var i = 0; i < map.length; i++){
+        plates += "Plato $i\n\n";
+        for(var j = 0; j < map[i].length; j++)
+          plates += map[i].keys.elementAt(j).toString() + " " + map[i].values.elementAt(j).toString() + "\n";
+        plates += "\n";
+      }
+    //}
+      
     return Text(plates,
       style: TextStyle(
         fontSize: 17,
@@ -108,7 +119,7 @@ class _SearchOrderState extends State<SearchOrder> {
                 SizedBox(height: 10,),
                 
                 //ListView.builder(itemBuilder: (_,index)=>state.orderList[index]["plates"],itemCount: state.orderList[index]["plates"].length,shrinkWrap: true, physics: ScrollPhysics(),),
-                getPlates(state.orderList[index]["plates"]),
+                getPlates(state.orderList[index]["plates"], ""),
                 /*Text("${state.orderList[index]["plates"]}",
                   style: TextStyle(
                     fontSize: 17,

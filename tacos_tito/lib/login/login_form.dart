@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/auth/user_auth_repository.dart';
 import 'package:tacos_tito/views/all_views.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 import '../widgets/all_widgets.dart';
@@ -8,7 +9,10 @@ class LoginForm extends StatelessWidget {
     // cambiar a un solo value changed que reciba enum de login
   final ValueChanged<bool> onGoogleLoginTap;
   final ValueChanged<bool> onFacebookLoginTap;
-
+  final userController = TextEditingController();
+  final passController = TextEditingController();
+  UserAuthRepository userRep = UserAuthRepository();
+  
   LoginForm({
     Key? key,
     required this.onGoogleLoginTap,
@@ -64,10 +68,11 @@ class LoginForm extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     enabledBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.white)),
-                    labelText: "Usuario",
+                    labelText: "Correo",
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.person),
                   ),
+                  controller: userController
               ),
 
               TextField(
@@ -79,16 +84,22 @@ class LoginForm extends StatelessWidget {
                     border: OutlineInputBorder(),
                     prefixIcon: Icon(Icons.password),
                   ),
+                controller: passController,
               ),
               
               Row(
                 mainAxisAlignment:MainAxisAlignment.center,
                 children: [
                   ElevatedButton(onPressed: ()=>{
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => HomePage()),
-                    )
+                    userRep.signInWithMail(email: userController.text, password: passController.text).then((response) {
+                      if (response == null) {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => HomePage())
+                        );
+                      }
+                    }
+                  )
                   }, child: Text("Inicia sesión", style: TextStyle(fontSize: 20, color: Colors.white),)),
                   SizedBox(width: 35,),
                   ElevatedButton(onPressed: ()=>{

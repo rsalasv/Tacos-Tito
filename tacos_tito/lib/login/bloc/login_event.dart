@@ -9,6 +9,6 @@ abstract class LoginEvent extends Equatable {
 
 class LoginWithGoogleEvent extends LoginEvent {}
 
-//class LoginWithAnonymousEvent extends LoginEvent {}
+class LoginWithMailEvent extends LoginEvent {}
 
 class LoginWithFacebookEvent extends LoginEvent {}
