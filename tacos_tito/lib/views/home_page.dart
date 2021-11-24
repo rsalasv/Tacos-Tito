@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/auth/user_auth_repository.dart';
+import 'package:tacos_tito/login/login.dart';
 import 'package:tacos_tito/models/userModel.dart';
 import 'package:tacos_tito/views/all_views.dart';
 import '../search_order/search_order.dart';
@@ -35,10 +37,17 @@ class _HomePageState extends State<HomePage> {
           ), visible: !widget.user.isAdmin,),
           IconButton(
             icon: Icon(
-              Icons.notifications,
+              Icons.logout,
               color: Colors.white,
             ),
-            onPressed: (){},
+            onPressed: (){
+              UserAuthRepository().signOutGoogle();
+              UserAuthRepository().signOutWithMail();
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Login()),
+              );
+            },
           ),
           SizedBox(width: 20,)
         ]
