@@ -90,7 +90,7 @@ class _SearchOrderState extends State<SearchOrder> {
                       fontSize: 17,
                       color: Colors.grey
                     ),),
-                  title: Text("Ricardo Salas",
+                  title: Text(state.orderList[index]["user"],
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17

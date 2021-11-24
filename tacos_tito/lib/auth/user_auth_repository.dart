@@ -10,13 +10,13 @@ import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 class UserAuthRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  final user = FirebaseAuth.instance.currentUser;
   late bool isAdmin=false;
   //get user => _auth.currentUser;
 
   bool isAlreadyLogged() {
-    var user = _auth.currentUser;
-    print("User: ${user?.displayName}");
-    return user != null;
+    print("User: ${this.user?.displayName}");
+    return this.user != null;
   }
 
   Future<void> signOutGoogle() async {

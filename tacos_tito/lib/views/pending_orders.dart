@@ -19,13 +19,7 @@ class _PendingOrderState extends State<PendingOrder> {
         title: Text("Tacos Tito", style: TextStyle(color: Colors.white,)),
         leading: Icon(Icons.keyboard_backspace),
         actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.notifications,
-              color: Colors.white,
-            ),
-            onPressed: (){},
-          ),
+          
           
           SizedBox(width: 20,)
         ]

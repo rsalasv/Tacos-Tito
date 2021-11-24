@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/models/chatMessageModel.dart';
+import 'package:tacos_tito/views/pending_orders.dart';
 
 class Chat extends StatefulWidget {
   @override
@@ -21,14 +22,12 @@ class _ChatState extends State<Chat> {
               Icons.receipt,
               color: Colors.white,
             ),
-            onPressed: (){},
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.notifications,
-              color: Colors.white,
-            ),
-            onPressed: (){},
+            onPressed: (){
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PendingOrder()),
+              );
+            },
           ),
           SizedBox(width: 20,)
         ]

@@ -33,6 +33,7 @@ class SoBloc extends Bloc<SoEvent, SoState> {
               "pay_amount": orderDocument["pay_amount"],
               "phone": orderDocument["phone"],
               "plates": orderDocument["plates"],
+              "user":orderDocument["user"],
             },
           )
           .toList();

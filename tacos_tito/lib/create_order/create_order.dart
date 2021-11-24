@@ -1,5 +1,8 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/auth/user_auth_repository.dart';
+import 'package:tacos_tito/views/pending_orders.dart';
 import 'package:tacos_tito/widgets/all_widgets.dart';
 import 'package:tacos_tito/create_order/bloc/order_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,12 +23,29 @@ class _CreateOrderState extends State<CreateOrder> {
   late OrderBloc _createBloc;
   String direction = "", phone = "";
   Position? currentPos;
+  var fichaData;
+  Future<String?> getFicha() async {
+    try {
+      var ficha = await FirebaseFirestore.instance.collection("ficha").doc("ficha");
+      
+      
+      await ficha.get().then((snapshot) {
+        fichaData = snapshot.data()!['ficha'].toString();
+      }); 
+      print("ficha data " + fichaData);
+      await ficha.update({"ficha":int.parse(fichaData)+1});
+      return fichaData;
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 
   Future<Position> _determinePosition() async {
     bool serviceEnabled;
     LocationPermission permission;
-
     serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
     if(!serviceEnabled){
       print("No está habilitada la localización :(");
     }
@@ -68,15 +88,14 @@ class _CreateOrderState extends State<CreateOrder> {
                 Icons.receipt,
                 color: Colors.white,
               ),
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => PendingOrder()),
+                );
+              },
             ),
-            IconButton(
-              icon: Icon(
-                Icons.notifications,
-                color: Colors.white,
-              ),
-              onPressed: () {},
-            ),
+          
             SizedBox(
               width: 20,
             )
@@ -227,7 +246,8 @@ class _CreateOrderState extends State<CreateOrder> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     ElevatedButton(
-                      onPressed: () {
+                      onPressed: () async {
+                        await getFicha();
                         DateTime date = new DateTime.now();
                         var plates = [];
                         for(int i = 0; i < platos.length; i++){
@@ -239,14 +259,18 @@ class _CreateOrderState extends State<CreateOrder> {
                           }
                           plates.add(plato);
                         }
-                        if (_formKey.currentState!.validate()) {
+                        if (_formKey.currentState!.validate())  {
+                          String? userName = UserAuthRepository().user!.email;
+                          
                           _createBloc.add(SaveOrderOnlineEvent(
                             orderData: {
+                              "ficha":fichaData,
                               "date": date,
                               "direction": direction,
                               "phone": phone,
                               "pay_amount": pay_amount,
                               "plates": plates,
+                              "user": userName,
                             }
                           )
                           );

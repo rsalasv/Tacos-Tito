@@ -81,7 +81,7 @@ class _HomePageState extends State<HomePage> {
           SizedBox(height: 50,),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
-            children: [ if (!widget.user.isAdmin)
+            children: [ 
               ElevatedButton(
                 onPressed: (){
                   Navigator.push(
