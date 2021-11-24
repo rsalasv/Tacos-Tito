@@ -45,7 +45,7 @@ class _CreateOrderState extends State<CreateOrder> {
       Placemark place = placemarks[0];
       setState(() {
         currentPos = position;
-        direction = "${place.street}";
+        direction = "${place.street}, ${place.locality}";
       });
     }catch(e){
       print(e);

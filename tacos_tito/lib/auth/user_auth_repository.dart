@@ -1,6 +1,11 @@
+import 'dart:convert';
+import 'dart:ffi';
+import 'dart:typed_data';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_storage/firebase_storage.dart' as firebase_storage;
 
 class UserAuthRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
@@ -88,10 +93,18 @@ class UserAuthRepository {
     print("Firebase Token:  $firebaseToken");
   }
 
-  void validateAdmin(String? user){
-    if(user=="theoutl4nder@gmail.com"){
-      print("SOY ADMIN");
-      isAdmin = true;
+  Future validateAdmin(String? user) async{
+    firebase_storage.Reference ref = firebase_storage.FirebaseStorage.instance.ref().child('/authusers.txt');
+    Uint8List? downloaded =  await ref.getData();
+    List<String> admins = utf8.decode(downloaded!).split("\r\n");
+    for(int i=0;i<admins.length;i++){
+      print(admins[i]);
+      if(admins[i].compareTo(user!)==0){
+        isAdmin = true;
+        print("SOY ADMIN!");
+        return;
+      }
     }
+    print("valió cabeza");
   }
 }
