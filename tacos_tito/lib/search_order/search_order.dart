@@ -27,7 +27,7 @@ class _SearchOrderState extends State<SearchOrder> {
       }*/
     //}else{
       for(var i = 0; i < map.length; i++){
-        plates += "Plato $i\n\n";
+        plates += "Plato ${i+1}\n\n";
         for(var j = 0; j < map[i].length; j++)
           plates += map[i].keys.elementAt(j).toString() + " " + map[i].values.elementAt(j).toString() + "\n";
         plates += "\n";
@@ -84,7 +84,7 @@ class _SearchOrderState extends State<SearchOrder> {
                             return Column(children: [
         SizedBox(height: 15,),
                 ListTile(
-                  leading: Text("Ficha #47",
+                  leading: Text("Ficha #${state.orderList[index]["ficha"]}",
                   style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 17,
