@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:tacos_tito/widgets/all_widgets.dart';
 import 'package:tacos_tito/create_order/bloc/order_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:geolocator/geolocator.dart';
+import 'package:geocoding/geocoding.dart';
 
 class CreateOrder extends StatefulWidget {
   CreateOrder({Key? key}) : super(key: key);
@@ -17,6 +19,40 @@ class _CreateOrderState extends State<CreateOrder> {
   var _formKey = GlobalKey<FormState>();
   late OrderBloc _createBloc;
   String direction = "", phone = "";
+  Position? currentPos;
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+    if(!serviceEnabled){
+      print("No está habilitada la localización :(");
+    }
+    permission = await Geolocator.checkPermission();
+    if(permission==LocationPermission.denied){
+      permission = await Geolocator.checkPermission();
+    }
+
+    if(permission == LocationPermission.deniedForever){
+      print("f");
+    }
+
+    Position position = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+
+    try{
+      List<Placemark> placemarks = await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark place = placemarks[0];
+      setState(() {
+        currentPos = position;
+        direction = "${place.street}";
+      });
+    }catch(e){
+      print(e);
+    }
+
+    return position;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -125,26 +161,11 @@ class _CreateOrderState extends State<CreateOrder> {
                 Column(
                   children: [
                     ListTile(
-                      leading: Icon(Icons.share_location),
+                      leading: ElevatedButton(onPressed: (){ _determinePosition();}
+                      , child: Icon(Icons.my_location, color: Colors.white,)),
                       title: Padding(
                         padding: EdgeInsets.only(right: 24),
-                        child: TextFormField(
-                            //controller: tipController,
-                            keyboardType: TextInputType.text,
-                            decoration: InputDecoration(
-                              border: OutlineInputBorder(),
-                              labelText: "Dirección",
-                              //errorText: validate ? true: ,
-                            ),
-                            validator: (value) {
-                                if (value == null || value.isEmpty){
-                                  return "Por favor ingresa un número de teléfono válido";
-                                } else {
-                                  direction = value;
-                                }
-                                return null;
-                            },
-                          ),
+                        child: DecoratedBox(decoration: BoxDecoration(borderRadius: BorderRadius.circular(12)), child: Text(direction),) 
                       ),
                     ),
                     ListTile(
