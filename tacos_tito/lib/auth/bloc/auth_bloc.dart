@@ -20,7 +20,7 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     Emitter emitState,
   ) {
     if (_authRepo.isAlreadyLogged())
-      emitState(AlreadyAuthState());
+      emitState(AlreadyAuthState(isAdmin: _authRepo.isAdmin));
     else
       emitState(UnAuthState());
   }

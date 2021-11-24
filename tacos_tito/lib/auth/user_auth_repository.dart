@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 class UserAuthRepository {
   final GoogleSignIn _googleSignIn = GoogleSignIn();
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  late bool isAdmin=false;
   //get user => _auth.currentUser;
 
   bool isAlreadyLogged() {
@@ -46,7 +47,7 @@ class UserAuthRepository {
 
   Future signInWithMail({String ?email, String ?password}) async {
     try {
-      await _auth.signInWithEmailAndPassword(email: email!, password: password!);
+      await _auth.signInWithEmailAndPassword(email: email!, password: password!).then((email) => validateAdmin(email.user!.email));
       return null;
     } on FirebaseAuthException catch (e) {
       return e.message;
@@ -85,5 +86,12 @@ class UserAuthRepository {
     assert(user.uid == currentUser.uid);
 
     print("Firebase Token:  $firebaseToken");
+  }
+
+  void validateAdmin(String? user){
+    if(user=="theoutl4nder@gmail.com"){
+      print("SOY ADMIN");
+      isAdmin = true;
+    }
   }
 }

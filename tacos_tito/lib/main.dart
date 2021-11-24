@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tacos_tito/models/userModel.dart';
 import 'package:tacos_tito/splash_screen.dart';
 import 'package:tacos_tito/views/home_page.dart';
 import 'views/all_views.dart';
@@ -30,7 +32,7 @@ class MyApp extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         if (state is AlreadyAuthState) {
-          return HomePage();
+          return HomePage(user: UserModel(state.isAdmin,""),);
         } else if (state is UnAuthState) {
           return Login();
         }

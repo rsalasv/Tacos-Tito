@@ -1,6 +1,7 @@
 import 'package:tacos_tito/login/bloc/login_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tacos_tito/models/userModel.dart';
 import 'package:tacos_tito/views/all_views.dart';
 import '../widgets/all_widgets.dart';
 import 'login_form.dart';
@@ -71,7 +72,7 @@ class _LoginState extends State<Login> {
               },
               builder: (context, state) {
                 if (state is LoginSuccessState) {
-                  return HomePage();
+                  return HomePage(user: UserModel(true,"John Xina"));
                 }
                 return Container(
                     child: LoginForm(

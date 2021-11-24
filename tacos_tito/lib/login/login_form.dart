@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/auth/user_auth_repository.dart';
+import 'package:tacos_tito/models/userModel.dart';
 import 'package:tacos_tito/views/all_views.dart';
 import 'package:auth_buttons/auth_buttons.dart';
 import '../widgets/all_widgets.dart';
@@ -30,7 +31,7 @@ class LoginForm extends StatelessWidget {
           body: Container(
             margin: EdgeInsets.all(10),
             child: Column(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
-              SizedBox(height: 80,),
+              SizedBox(height: 45,),
               Text("Taqueria Tito", style: TextStyle(color: Colors.white, fontSize: 60, fontWeight: FontWeight.bold),),
 
               Container(
@@ -95,7 +96,7 @@ class LoginForm extends StatelessWidget {
                       if (response == null) {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(builder: (context) => HomePage())
+                          MaterialPageRoute(builder: (context) => HomePage(user: UserModel(userRep.isAdmin, userController.text),))
                         );
                       }
                     }

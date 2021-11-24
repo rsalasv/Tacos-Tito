@@ -9,6 +9,10 @@ abstract class AuthState extends Equatable {
 
 class AuthInitial extends AuthState {}
 
-class AlreadyAuthState extends AuthState {}
+class AlreadyAuthState extends AuthState {
+  final bool isAdmin;
+
+  AlreadyAuthState({required this.isAdmin});
+}
 
 class UnAuthState extends AuthState {}
