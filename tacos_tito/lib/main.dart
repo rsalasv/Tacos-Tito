@@ -2,12 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:tacos_tito/models/tacoModel.dart';
 import 'package:tacos_tito/models/userModel.dart';
 import 'package:tacos_tito/splash_screen.dart';
 import 'package:tacos_tito/views/home_page.dart';
 import 'views/all_views.dart';
 import 'login/login.dart';
-
+import 'package:provider/provider.dart';
 import 'auth/bloc/auth_bloc.dart';
 
 void main() async {
@@ -27,7 +28,9 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return ChangeNotifierProvider<tacoModel>(
+      create: (_)=>tacoModel(0),
+      child: MaterialApp(
       home: BlocConsumer<AuthBloc, AuthState>(
       listener: (context, state) {},
       builder: (context, state) {
@@ -40,6 +43,7 @@ class MyApp extends StatelessWidget {
       },
     ),
       theme: ThemeData(primarySwatch: Colors.orange),
-    );
+    )
+    ); 
   }
 }

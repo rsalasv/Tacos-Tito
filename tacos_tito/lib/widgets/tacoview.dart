@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:tacos_tito/models/tacoModel.dart';
+import 'package:provider/provider.dart';
 
 class TacoView extends StatefulWidget {
   int amount = 0;
@@ -15,12 +17,16 @@ class _TacoViewState extends State<TacoView> {
   bool editable=true; //TODO: Permitir cambiar su editabilidad dependiendo de la vista
 
   Widget build(BuildContext context) {
+    final tacoTotal = Provider.of<tacoModel>(context);
     return Row(
             children: [
               if(this.editable) ElevatedButton(
                 onPressed: (){
                   setState(() {
-                    if(widget.amount > 0) widget.amount--;
+                    if(widget.amount > 0) {
+                      widget.amount--;
+                      tacoTotal.add(false);
+                    }
                   });
                 },
                 child: Icon(Icons.remove, color: Colors.white,),
@@ -37,7 +43,10 @@ class _TacoViewState extends State<TacoView> {
               if(this.editable) ElevatedButton(
                 onPressed: (){
                   setState(() {
-                    if(widget.amount < 6) widget.amount++;
+                    if(widget.amount < 6){
+                      widget.amount++;
+                      tacoTotal.add(true);
+                    } 
                   });
                 },
                 child: Icon(Icons.add, color: Colors.white,),

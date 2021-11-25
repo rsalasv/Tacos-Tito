@@ -130,7 +130,7 @@ class _SearchOrderState extends State<SearchOrder> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     
-                    Text("Total: \$ 104",
+                    Text("Total: \$"+state.orderList[index]["order_total"].toString(),
                       style: TextStyle(
                         fontSize: 17,
 

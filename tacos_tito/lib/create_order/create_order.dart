@@ -2,28 +2,31 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/auth/user_auth_repository.dart';
+import 'package:tacos_tito/models/tacoModel.dart';
 import 'package:tacos_tito/views/pending_orders.dart';
 import 'package:tacos_tito/widgets/all_widgets.dart';
 import 'package:tacos_tito/create_order/bloc/order_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:geocoding/geocoding.dart';
+import 'package:provider/provider.dart';
 
 class CreateOrder extends StatefulWidget {
   CreateOrder({Key? key}) : super(key: key);
-
+  
   @override
   _CreateOrderState createState() => _CreateOrderState();
 }
 
 class _CreateOrderState extends State<CreateOrder> {
   List<PlateView> platos = [new PlateView()];
-  int total = 0, pay_amount = 0;
+  int pay_amount = 0;
   var _formKey = GlobalKey<FormState>();
   late OrderBloc _createBloc;
   String direction = "", phone = "";
   Position? currentPos;
   var fichaData;
+
   Future<String?> getFicha() async {
     try {
       var ficha = await FirebaseFirestore.instance.collection("ficha").doc("ficha");
@@ -76,6 +79,9 @@ class _CreateOrderState extends State<CreateOrder> {
 
   @override
   Widget build(BuildContext context) {
+    final myTotal = Provider.of<tacoModel>(context);
+    if(platos[0].guisos[0].selectedGuiso==null)
+      myTotal.reset();
     return Scaffold(
       appBar: AppBar(
           title: Text("Tacos Tito",
@@ -89,6 +95,7 @@ class _CreateOrderState extends State<CreateOrder> {
                 color: Colors.white,
               ),
               onPressed: () {
+                myTotal.reset();
                 Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => PendingOrder()),
@@ -168,7 +175,7 @@ class _CreateOrderState extends State<CreateOrder> {
                       width: 15,
                     ),
                     Text(
-                      "Total: ",
+                      "Total: "+myTotal.totalOrden.toString(),
                       style: TextStyle(
                         fontSize: 17,
                       ),
@@ -268,7 +275,8 @@ class _CreateOrderState extends State<CreateOrder> {
                               "date": date,
                               "direction": direction,
                               "phone": phone,
-                              "pay_amount": pay_amount,
+                              "order_total": myTotal.totalOrden.toString(),
+                              "pay_amount": pay_amount.toString(),
                               "plates": plates,
                               "user": userName,
                             }
