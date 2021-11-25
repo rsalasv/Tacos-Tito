@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/models/chatMessageModel.dart';
-import 'package:tacos_tito/views/pending_orders.dart';
+import 'package:tacos_tito/search_order/pending_orders.dart';
 
 class Chat extends StatefulWidget {
   @override

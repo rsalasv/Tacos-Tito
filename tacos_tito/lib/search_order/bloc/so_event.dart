@@ -8,3 +8,5 @@ abstract class SoEvent extends Equatable {
 }
 
 class RequestDataEvent extends SoEvent {}
+
+class RequestUserDataEvent extends SoEvent {}

@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:tacos_tito/auth/user_auth_repository.dart';
 import 'package:tacos_tito/models/tacoModel.dart';
-import 'package:tacos_tito/views/pending_orders.dart';
+import 'package:tacos_tito/search_order/pending_orders.dart';
 import 'package:tacos_tito/widgets/all_widgets.dart';
 import 'package:tacos_tito/create_order/bloc/order_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
