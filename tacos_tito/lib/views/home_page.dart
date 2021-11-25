@@ -34,7 +34,7 @@ class _HomePageState extends State<HomePage> {
                 MaterialPageRoute(builder: (context) => PendingOrder()),
               );
             },
-          ), visible: !widget.user.isAdmin,),
+          ),),
           IconButton(
             icon: Icon(
               Icons.logout,

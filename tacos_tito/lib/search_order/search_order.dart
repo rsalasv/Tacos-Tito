@@ -18,21 +18,12 @@ class _SearchOrderState extends State<SearchOrder> {
   Text getPlates(map, nombre){
 
     var plates = "";
-    /*if(nombre != ""){
-      for(var i = 0; i < map.length; i++){
-        plates += "Plato $i\n\n";
-        for(var j = 0; j < map[i].length; j++)
-          plates += map[i].keys.elementAt(j).toString() + " " + map[i].values.elementAt(j).toString() + "\n";
-        plates += "\n";
-      }*/
-    //}else{
       for(var i = 0; i < map.length; i++){
         plates += "Plato ${i+1}\n\n";
         for(var j = 0; j < map[i].length; j++)
           plates += map[i].keys.elementAt(j).toString() + " " + map[i].values.elementAt(j).toString() + "\n";
         plates += "\n";
       }
-    //}
       
     return Text(plates,
       style: TextStyle(
