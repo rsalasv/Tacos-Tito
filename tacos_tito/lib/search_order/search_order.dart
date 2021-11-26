@@ -14,6 +14,9 @@ class SearchOrder extends StatefulWidget {
 
 class _SearchOrderState extends State<SearchOrder> {
   List<OrderView> orders = [new OrderView()];
+  final myController = TextEditingController();
+  var queryResultSet = [];
+  var searchResult = [];
 
   Text getPlates(map, nombre){
 
@@ -39,7 +42,7 @@ class _SearchOrderState extends State<SearchOrder> {
         title: Text('Tacos Tito'),
       ),
       body: BlocProvider(
-        create: (context) => SoBloc()..add(RequestDataEvent()),
+        create: (context) => SoBloc()..add(RequestAllEvent(email: "")),
         child: BlocConsumer<SoBloc, SoState>(
           listener: (context, state) {
             if (state is NoDataState) {
@@ -61,11 +64,15 @@ class _SearchOrderState extends State<SearchOrder> {
                     Column(
                       children: [
                         TextField(
+                          controller: myController,
                           style: TextStyle(color: Colors.black),
                           decoration: InputDecoration(
-                              prefixIcon: Icon(
-                                Icons.search,
-                                size: 30,
+                            hintText: 'Introduce un número de orden o correo',
+                              prefixIcon: IconButton(
+                                icon:Icon(Icons.search),
+                                onPressed: (){
+                                  BlocProvider.of<SoBloc>(context).add(RequestAllEvent(email: myController.text));
+                                },
                               ),
                               border: OutlineInputBorder()),
                         ),

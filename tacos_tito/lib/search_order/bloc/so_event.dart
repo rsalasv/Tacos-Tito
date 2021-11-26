@@ -10,3 +10,11 @@ abstract class SoEvent extends Equatable {
 class RequestDataEvent extends SoEvent {}
 
 class RequestUserDataEvent extends SoEvent {}
+
+class RequestAllEvent extends SoEvent {
+  final String email;
+
+  RequestAllEvent({this.email = ""});
+  @override
+  List<Object> get props => [email];
+}
